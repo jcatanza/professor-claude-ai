@@ -1,0 +1,48 @@
+# Secrets — NEVER commit
+.env
+.env.local
+*.key
+
+# Data and runtime artifacts
+data/
+*.sqlite
+*.duckdb
+chroma/
+checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Outputs (digests, etc. — these go in their own repo / branch)
+digests/local/
