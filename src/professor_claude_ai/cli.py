@@ -78,7 +78,7 @@ def run_nightly(argv: list[str] | None = None) -> int:
         # langgraph's compile() does not propagate StateT to the resulting
         # Pregel, so mypy does not know app.invoke accepts ProfessorState.
         # The runtime type is correct.
-        result = app.invoke(initial_state, config=config)  # type: ignore[arg-type]
+        result = app.invoke(initial_state, config=config)  # type: ignore[arg-type, unused-ignore]
 
     digest = result.get("daily_digest") or "(no digest produced)"
 
