@@ -1,8 +1,13 @@
 # Professor.Claude.AI
 
+[![CI](https://github.com/jcatanza/professor-claude-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/jcatanza/professor-claude-ai/actions/workflows/ci.yml)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Built with LangGraph](https://img.shields.io/badge/built_with-LangGraph-orange.svg)](https://github.com/langchain-ai/langgraph)
+
 > An autonomous self-teaching AI research agent. Runs nightly to ingest, triage, deeply read, and synthesize new developments in AI research — keeping its human collaborator at the frontier with roughly an hour of focused review per day.
 
-**Status:** v0.1 (the spine). End-to-end working pipeline, narrow but real.
+**Status:** v0.1 (the spine). End-to-end working pipeline, narrow but real. See [sample digest](docs/sample-digest-2026-05-07.md) from the first successful production run.
 
 ## What it does
 
@@ -12,7 +17,7 @@
 4. **Writes** to a persistent memory layer (short-term checkpoints + long-term semantic store)
 5. **Emits** a daily digest — both as email and a markdown commit to a private GitHub repo
 
-For the full design, read [`docs/design-plan.md`](docs/design-plan.md).
+Architecture decisions are tracked in [`docs/adr/`](docs/adr/) and the project [decision log](docs/decision-log.md). The full v0.3 design plan is maintained in private project notes and will be sanitized for public release in a future revision.
 
 ## Architecture at a glance
 
