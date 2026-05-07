@@ -8,7 +8,7 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -35,7 +35,7 @@ class Settings(BaseSettings):
 
     # --- Email digest ---
     smtp_host: str | None = None
-    smtp_port: int = 587
+    smtp_port: int | None = 587
     smtp_user: str | None = None
     smtp_password: str | None = None
     digest_recipient: str | None = None
@@ -56,6 +56,22 @@ class Settings(BaseSettings):
     # --- Claude model selection ---
     deep_read_model: str = "claude-opus-4-7"
     synthesis_model: str = "claude-opus-4-7"
+
+    @field_validator(
+        "langsmith_api_key",
+        "smtp_host",
+        "smtp_port",
+        "smtp_user",
+        "smtp_password",
+        "digest_recipient",
+        mode="before",
+    )
+    @classmethod
+    def empty_str_to_none(cls, v: object) -> object:
+        """Convert empty strings to None — CI sets unset secrets to '' which would fail typed validation."""
+        if isinstance(v, str) and v.strip() == "":
+            return None
+        return v
 
     @property
     def keyword_list(self) -> list[str]:
