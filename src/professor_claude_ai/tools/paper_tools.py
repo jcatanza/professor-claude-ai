@@ -46,7 +46,7 @@ def fetch_paper_text(pdf_url: str) -> str:
         return ""
 
 
-@tool  # type: ignore[misc]
+@tool
 def fetch_paper(arxiv_id: str) -> str:
     """Fetch the full text of an arXiv paper given its ID.
 

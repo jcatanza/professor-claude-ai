@@ -125,7 +125,7 @@ def search_arxiv_recent(
 # --- LangChain @tool wrapper for use inside the ReAct loop ---
 
 
-@tool  # type: ignore[misc]
+@tool
 def search_arxiv(query: str, max_results: int = 10) -> str:
     """Search arXiv for recent AI/ML papers matching the query.
 

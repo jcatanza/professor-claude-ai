@@ -26,3 +26,7 @@ repos:
           - pydantic>=2.7
           - pydantic-settings>=2.3
           - types-beautifulsoup4
+          - langchain-core>=0.3
+          - langchain-anthropic>=0.3
+          - langgraph>=1.0.2
+          - langgraph-checkpoint-sqlite>=2.0

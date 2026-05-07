@@ -56,6 +56,7 @@ def _deep_read_one(
         model_name=settings.deep_read_model,
         max_tokens_to_sample=16384,
         timeout=120.0,
+        stop=None,
     )
     structured_llm = llm.with_structured_output(DeepReadReport)
 

@@ -13,6 +13,8 @@ import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 
+from langchain_core.runnables import RunnableConfig
+
 from professor_claude_ai.config import get_settings
 from professor_claude_ai.graph import build_graph
 from professor_claude_ai.logging_setup import configure_logging
@@ -72,8 +74,11 @@ def run_nightly(argv: list[str] | None = None) -> int:
 
     with get_checkpointer(settings.checkpoint_db_path) as ckpt:
         app = build_graph().compile(checkpointer=ckpt)
-        config = {"configurable": {"thread_id": run_id}}
-        result = app.invoke(initial_state, config=config)
+        config: RunnableConfig = {"configurable": {"thread_id": run_id}}
+        # langgraph's compile() does not propagate StateT to the resulting
+        # Pregel, so mypy does not know app.invoke accepts ProfessorState.
+        # The runtime type is correct.
+        result = app.invoke(initial_state, config=config)  # type: ignore[arg-type]
 
     digest = result.get("daily_digest") or "(no digest produced)"
 

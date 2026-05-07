@@ -21,7 +21,7 @@ from professor_claude_ai.agents.triage import triage_node
 from professor_claude_ai.state import ProfessorState
 
 
-def build_graph() -> StateGraph:
+def build_graph() -> StateGraph[ProfessorState]:
     """Build (uncompiled) the v0.1 nightly run graph.
 
     Caller compiles it with a checkpointer:
