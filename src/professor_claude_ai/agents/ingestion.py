@@ -27,7 +27,7 @@ def ingestion_node(state: ProfessorState) -> dict[str, Any]:
 
     papers = search_arxiv_recent(
         keywords=keywords,
-        days_back=1,
+        days_back=2,
         max_results=50,
     )
     logger.info("ingestion: %d candidate papers", len(papers))
