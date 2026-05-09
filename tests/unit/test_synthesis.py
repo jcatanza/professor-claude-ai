@@ -6,6 +6,7 @@ from professor_claude_ai.agents.synthesis import _format_digest
 from professor_claude_ai.state import (
     ClaimWithProvenance,
     DeepReadReport,
+    PaperMetadata,
     TriageDecision,
 )
 
@@ -15,11 +16,13 @@ def test_empty_digest_has_correct_structure() -> None:
         run_date="2026-05-06",
         deep_reads=[],
         triage_decisions=[],
+        candidate_papers=[],
         n_candidates=0,
     )
     assert "Daily Digest" in digest
     assert "2026-05-06" in digest
-    assert "No deep reads tonight" in digest
+    # n_candidates=0 triggers case (a): upstream fetch issue
+    assert "No candidates fetched" in digest
 
 
 def test_digest_with_deep_reads_includes_all_sections() -> None:
@@ -58,10 +61,33 @@ def test_digest_with_deep_reads_includes_all_sections() -> None:
             matched_keywords=["tool"],
         ),
     ]
+    candidate_papers = [
+        PaperMetadata(
+            arxiv_id="2401.12345",
+            title="Test Paper Title",
+            authors=["A. Author"],
+            abstract="abstract text",
+            primary_category="cs.AI",
+            submitted_date="2024-01-15",
+            pdf_url="http://example.com/pdf",
+            abs_url="http://example.com/abs",
+        ),
+        PaperMetadata(
+            arxiv_id="2401.55555",
+            title="Skim Paper Title",
+            authors=["B. Author"],
+            abstract="skim abstract",
+            primary_category="cs.AI",
+            submitted_date="2024-01-15",
+            pdf_url="http://example.com/pdf",
+            abs_url="http://example.com/abs",
+        ),
+    ]
     digest = _format_digest(
         run_date="2026-05-06",
         deep_reads=[report],
         triage_decisions=triage,
+        candidate_papers=candidate_papers,
         n_candidates=42,
     )
     assert "2401.12345" in digest
@@ -69,3 +95,6 @@ def test_digest_with_deep_reads_includes_all_sections() -> None:
     assert "## Skims" in digest
     assert "2401.55555" in digest
     assert "Surveyed 42" in digest
+    # New behavior: titles appear alongside arxiv ids
+    assert "Test Paper Title" in digest
+    assert "Skim Paper Title" in digest

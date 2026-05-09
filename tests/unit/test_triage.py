@@ -58,6 +58,6 @@ def test_decide_thresholds() -> None:
     assert _decide(0.0) == "skip"
     assert _decide(0.24) == "skip"
     assert _decide(0.25) == "skim"
-    assert _decide(0.59) == "skim"
-    assert _decide(0.60) == "deep_read"
+    assert _decide(0.44) == "skim"
+    assert _decide(0.45) == "deep_read"
     assert _decide(1.0) == "deep_read"
