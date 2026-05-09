@@ -52,7 +52,7 @@ def _score_paper(
 
 def _decide(score: float) -> str:
     """Map score to skip / skim / deep_read."""
-    if score >= 0.6:
+    if score >= 0.45:
         return "deep_read"
     if score >= 0.25:
         return "skim"
