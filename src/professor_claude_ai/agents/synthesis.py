@@ -133,8 +133,7 @@ def _format_digest(
         for d in skims[:20]:  # cap; full list is in the run log
             title = title_by_id.get(d.arxiv_id, "(title unavailable)")
             lines.append(
-                f"- `{d.arxiv_id}` — score {d.score:.2f}, "
-                f"matched {d.matched_keywords} — {title}"
+                f"- `{d.arxiv_id}` — score {d.score:.2f}, matched {d.matched_keywords} — {title}"
             )
         if len(skims) > 20:
             lines.append(f"- *...and {len(skims) - 20} more.*")
