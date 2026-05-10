@@ -51,7 +51,7 @@ class Settings(BaseSettings):
 
     # --- Runtime tunables ---
     max_deep_reads_per_run: int = Field(2, ge=1, le=10)
-    subfield_keywords: str = "agent,agentic,harness,tool-use,scaffold"
+    subfield_keywords: str = "agent,agentic,harness,tool-use,tool use,scaffold,react,llm-agent"
 
     # --- Claude model selection ---
     deep_read_model: str = "claude-opus-4-7"
