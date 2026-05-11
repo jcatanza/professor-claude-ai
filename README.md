@@ -115,7 +115,8 @@ The design explicitly guards against five failure modes (see `docs/design-plan.m
 3. **Echo chamber** — periodic "outside view" sweeps; topic diversity metrics
 4. **Stale interests** — field-shift detector; quarterly taste-model recalibration
 5. **Over-engineered & unused** — spine-first build; weekly check that you actually read the digests
-
+## Project status
+**Paused May 11 – June 11, 2026.** Nightly workflow disabled manually during a high-coursework period (Generative AI incomplete + 605.256 starts May 20). Re-enable with `gh workflow enable nightly` post-June 11.
 ## License
 
 MIT — see [LICENSE](LICENSE).

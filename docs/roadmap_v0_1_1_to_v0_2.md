@@ -349,5 +349,12 @@ These belong here as a quick reference; the original full discussions are in the
 **Maintenance:** when an item is completed, mark it done with the commit hash. When new items emerge, add them with the next available number (start at #34). When an ADR candidate becomes a written ADR, replace the candidate row with the ADR number and link.
 
 ---
+---
+## New items from chat #8 and #9
 
+- **#44 — Rolling candidate pool.** Carry near-miss papers from prior nights into the current night's pool. Likely obsoleted by v0.2 embedding-based top-K retrieval; worth implementing as a stopgap if v0.2 slips past mid-July. Design questions: window length; re-triage vs. cached scores; double-deep-read prevention via persistent state; digest format ("carried from prior night" marking). **M, depends on persistent state layer, deferred.**
+
+- **#45 — Pause-mode for nightly cron during high-coursework periods.** Options: (a) manual `gh workflow disable nightly` / `gh workflow enable nightly` with documented runbook — implemented in chat #9; (b) `PAUSED=true` env var that defaults workflow to early-exit; (c) calendar-driven via `config/pause.yml`. Option (a) is zero-code and in use now. **S, no dependencies, todo.**
+
+- **#46 — GitHub Actions UI inconsistency investigation.** Unauthenticated All-workflows page renders unreliably; routed around via per-workflow URL convention. Investigate whether GitHub has a documented limitation; file a bug if not; retire workaround if upstream-fixed. **S, no dependencies, low priority.**
 *End of roadmap.*
