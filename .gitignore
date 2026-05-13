@@ -46,3 +46,4 @@ logs/
 
 # Outputs (digests, etc. — these go in their own repo / branch)
 digests/local/
+docs/references/
